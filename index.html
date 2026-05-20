@@ -1,172 +1,186 @@
-# Portfolio HTML — EN/VI Language Toggle Version
+<!DOCTYPE html>
 
-Đã thêm:
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lê Thị Ý Nhi — AI Data Specialist Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#0d1117;--paper:#f0f5e8;--white:#fff;--navy:#3a5a2a;--accent:#7a9e3a;--sage:#5a7a2a;--gold:#a0b84a;--mid:#64748b;--rule:#ccdbb0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.7}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:214px;background:var(--navy);display:flex;flex-direction:column;z-index:200}
+.sb-logo{padding:30px 22px 22px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.sb-name{font-family:'Fraunces',serif;font-size:20px;color:#fff;font-weight:300;line-height:1.25;margin-bottom:5px}
+.sb-role{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.32)}
+.sb-nav{flex:1;padding:14px 0;overflow-y:auto}
+.sb-nav a{display:flex;align-items:center;gap:9px;padding:10px 22px;color:rgba(255,255,255,0.42);text-decoration:none;font-size:12px;font-weight:500;transition:all .2s;border-left:2px solid transparent}
+.sb-nav a:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.sb-nav a.active{color:#fff;border-left-color:var(--accent);background:rgba(255,255,255,0.06)}
+.sb-foot{padding:16px 22px;border-top:1px solid rgba(255,255,255,0.07);font-family:'DM Mono',monospace;font-size:8.5px;color:rgba(255,255,255,0.18);letter-spacing:0.08em}
+.main{margin-left:214px;min-height:100vh}
+.hero{background:var(--navy);padding:58px 50px 50px;position:relative;overflow:hidden}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(32px,4vw,52px);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-0.02em;margin-bottom:6px}
+.hero h1 em{font-style:italic;color:rgba(255,255,255,0.42)}
+.hero-eye{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:13px}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.48);margin-bottom:30px;max-width:480px;line-height:1.65}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:'DM Mono',monospace;font-size:9px;padding:5px 11px;border-radius:2px;letter-spacing:0.07em;text-transform:uppercase}
+.chip-r{background:var(--accent);color:#fff}
+.chip-o{border:1px solid rgba(255,255,255,0.17);color:rgba(255,255,255,0.52)}
+.section{padding:50px}
+.section h2{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--navy);margin-bottom:20px}
+.card{background:#fff;border:1px solid var(--rule);padding:22px;border-radius:6px}
+.lang-switch{position:fixed;top:18px;right:22px;z-index:9999}
+#langToggle{border:none;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);color:#fff;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;padding:9px 14px;border-radius:999px;cursor:pointer;border:1px solid rgba(255,255,255,0.12);transition:.25s ease}
+#langToggle:hover{background:rgba(255,255,255,0.2);transform:translateY(-1px)}
+footer{background:#0d1117;color:rgba(255,255,255,.38);text-align:center;padding:26px;font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.06em}
+@media(max-width:860px){.sidebar{width:176px}.main{margin-left:176px}.section{padding:38px 26px}.hero{padding:42px 26px 34px}}
+@media(max-width:560px){.sidebar{display:none}.main{margin-left:0}.section{padding:26px 16px}.lang-switch{right:14px;top:14px}}
+</style>
+</head>
+<body>
 
-* Nút chuyển đổi ngôn ngữ EN / VI ở góc trên bên phải
-* Toàn bộ nội dung hỗ trợ song ngữ
-* Chuyển đổi realtime không reload trang
-* UI toggle nhỏ gọn theo style portfolio
-* Tự động đổi title website
-
-## Thêm đoạn này ngay trước `</body>`
-
-```html
-<!-- LANGUAGE TOGGLE -->
 <div class="lang-switch">
- <button id="langToggle">VI</button>
+<button id="langToggle">VI</button>
 </div>
 
-<style>
-.lang-switch{
- position:fixed;
- top:18px;
- right:22px;
- z-index:9999;
-}
+<aside class="sidebar">
+<div class="sb-logo">
+<div class="sb-name">Lê Thị<br>Ý Nhi</div>
+<div class="sb-role" data-en="AI Data Specialist" data-vi="Chuyên Gia AI Data">AI Data Specialist</div>
+</div>
 
-#langToggle{
- border:none;
- background:rgba(255,255,255,0.12);
- backdrop-filter:blur(10px);
- color:#fff;
- font-family:'DM Mono',monospace;
- font-size:11px;
- letter-spacing:.08em;
- padding:9px 14px;
- border-radius:999px;
- cursor:pointer;
- border:1px solid rgba(255,255,255,0.12);
- transition:.25s ease;
-}
+<nav class="sb-nav">
+<a href="#about" class="active" data-en="◈ About Me" data-vi="◈ Giới Thiệu">◈ About Me</a>
+<a href="#overview" data-en="◑ Overview" data-vi="◑ Tổng Quan">◑ Overview</a>
+<a href="#contact" data-en="◎ Contact" data-vi="◎ Liên Hệ">◎ Contact</a>
+</nav>
 
-#langToggle:hover{
- background:rgba(255,255,255,0.2);
- transform:translateY(-1px);
-}
+<div class="sb-foot">Portfolio · 2026</div>
+</aside>
 
-@media(max-width:560px){
- .lang-switch{
- right:14px;
- top:14px;
- }
+<div class="main">
 
- #langToggle{
- padding:8px 12px;
- font-size:10px;
- }
-}
-</style>
+<div class="hero">
+<p class="hero-eye" 
+ data-en="AI Training · Data Annotation · Content Evaluation · Vietnamese Language Specialist"
+ data-vi="AI Training · Gán Nhãn Dữ Liệu · Đánh Giá Nội Dung · Chuyên Gia Ngôn Ngữ Tiếng Việt">
+AI Training · Data Annotation · Content Evaluation · Vietnamese Language Specialist
+</p>
+
+<h1>Lê Thị Ý Nhi<br><em>Le Thi Y Nhi</em></h1>
+
+<p class="hero-sub"
+ data-en="Data Analytics & AI Data Quality Specialist. 5+ years at the intersection of human judgment and machine learning — native Vietnamese, remote-disciplined, deadline-driven."
+ data-vi="Chuyên gia Data Analytics & AI Data Quality với hơn 5 năm kinh nghiệm tại giao điểm giữa tư duy con người và machine learning — native tiếng Việt, làm việc remote kỷ luật và đúng deadline.">
+Data Analytics & AI Data Quality Specialist. 5+ years at the intersection of human judgment and machine learning — native Vietnamese, remote-disciplined, deadline-driven.
+</p>
+
+<div class="chips">
+<span class="chip chip-r" data-en="Available Now" data-vi="Sẵn Sàng Làm Việc">Available Now</span>
+<span class="chip chip-o">20–30 hrs / week</span>
+<span class="chip chip-o" data-en="Remote · Async" data-vi="Remote · Linh Hoạt">Remote · Async</span>
+<span class="chip chip-o" data-en="Vietnamese Native" data-vi="Tiếng Việt Bản Ngữ">Vietnamese Native</span>
+<span class="chip chip-o">99.2% Accuracy</span>
+</div>
+</div>
+
+<section class="section" id="about">
+<h2 data-en="Professional Identity & Working Style" data-vi="Hồ Sơ Chuyên Môn & Phong Cách Làm Việc">Professional Identity & Working Style</h2>
+
+<div class="card">
+<p 
+ data-en="I am a Data Analytics & AI Data Quality Specialist with expertise in AI Content Evaluation, Data Annotation, and Data Analytics."
+ data-vi="Tôi là chuyên gia Data Analytics & AI Data Quality với chuyên môn về AI Content Evaluation, Data Annotation và Data Analytics.">
+I am a Data Analytics & AI Data Quality Specialist with expertise in AI Content Evaluation, Data Annotation, and Data Analytics.
+</p>
+
+<br>
+
+<p 
+ data-en="Over 5+ years I have worked at the intersection of human judgment and machine learning — helping AI systems become more accurate, culturally grounded, and reliable."
+ data-vi="Trong hơn 5 năm, tôi làm việc tại giao điểm giữa tư duy con người và machine learning — giúp các hệ thống AI trở nên chính xác, phù hợp văn hóa và đáng tin cậy hơn.">
+Over 5+ years I have worked at the intersection of human judgment and machine learning — helping AI systems become more accurate, culturally grounded, and reliable.
+</p>
+</div>
+</section>
+
+<section class="section" id="overview">
+<h2 data-en="Track Record" data-vi="Thành Tựu & Hiệu Suất">Track Record</h2>
+
+<div class="card">
+<p><strong>50K+</strong> Outputs Evaluated</p>
+<p><strong>99.2%</strong> Accuracy Rate</p>
+<p><strong>5 Years</strong> Experience</p>
+<p><strong>2,400+</strong> Errors Flagged</p>
+</div>
+</section>
+
+<section class="section" id="contact">
+<h2 data-en="Get In Touch" data-vi="Liên Hệ">Get In Touch</h2>
+
+<div class="card">
+<p><strong>Email:</strong> aerikael1112@gmail.com</p>
+<p><strong>Phone:</strong> (+84) 326 352 270</p>
+<p><strong>LinkedIn:</strong> linkedin.com/in/le-vivian-3673033b4</p>
+</div>
+</section>
+
+<footer>
+Lê Thị Ý Nhi · AI Data Specialist · 2026
+</footer>
+
+</div>
 
 <script>
-const translations = {
- en: {
- title: 'Lê Thị Ý Nhi — AI Data Specialist Portfolio',
- heroSub: 'Data Analytics & AI Data Quality Specialist. 5+ years at the intersection of human judgment and machine learning — native Vietnamese, remote-disciplined, deadline-driven.',
- available: 'Available Now',
- remote: 'Remote · Async',
- native: 'Vietnamese Native'
- },
- vi: {
- title: 'Lê Thị Ý Nhi — Portfolio Chuyên Gia AI Data',
- heroSub: 'Chuyên gia Data Analytics & AI Data Quality với hơn 5 năm kinh nghiệm tại giao điểm giữa tư duy con người và machine learning — native tiếng Việt, làm việc remote kỷ luật và đúng deadline.',
- available: 'Sẵn sàng làm việc',
- remote: 'Remote · Linh hoạt',
- native: 'Tiếng Việt bản ngữ'
- }
-};
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.sb-nav a');
+
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+links.forEach(a=>a.classList.remove('active'));
+const a=document.querySelector('.sb-nav a[href="#'+e.target.id+'"]');
+if(a)a.classList.add('active');
+}
+});
+},{rootMargin:'-15% 0px -75% 0px'});
+
+secs.forEach(s=>obs.observe(s));
+
+links.forEach(a=>{
+a.addEventListener('click',e=>{
+e.preventDefault();
+document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+});
+});
+
+const toggleBtn = document.getElementById('langToggle');
+const langElements = document.querySelectorAll('[data-en]');
 
 let currentLang = 'en';
 
-const elements = {
- heroSub: document.querySelector('.hero-sub'),
- chips: document.querySelectorAll('.chip'),
- title: document.querySelector('title')
-};
-
-function switchLanguage(){
- currentLang = currentLang === 'en' ? 'vi' : 'en';
-
- const t = translations[currentLang];
-
- document.title = t.title;
- elements.heroSub.innerHTML = t.heroSub;
-
- elements.chips[0].innerHTML = t.available;
- elements.chips[2].innerHTML = t.remote;
- elements.chips[3].innerHTML = t.native;
-
- document.getElementById('langToggle').innerHTML = currentLang === 'en' ? 'VI' : 'EN';
-}
-
-document.getElementById('langToggle').addEventListener('click',switchLanguage);
-</script>
-```
-
----
-
-## Để chuyển toàn bộ website sang song ngữ chuẩn
-
-Mỗi đoạn text cần thêm attribute:
-
-```html
-<h2 data-en="Professional Identity & Working Style"
- data-vi="Hồ Sơ Chuyên Môn & Phong Cách Làm Việc">
- Professional Identity & Working Style
-</h2>
-```
-
-Sau đó dùng script này:
-
-```html
-<script>
-const langElements = document.querySelectorAll('[data-en]');
-
 function applyLanguage(lang){
- langElements.forEach(el=>{
- el.innerHTML = el.dataset[lang];
- });
+langElements.forEach(el=>{
+el.innerHTML = el.dataset[lang];
+});
+
+if(lang === 'vi'){
+document.title = 'Lê Thị Ý Nhi — Portfolio AI Data';
+}else{
+document.title = 'Lê Thị Ý Nhi — AI Data Specialist Portfolio';
+}
 }
 
-function switchLanguage(){
- currentLang = currentLang === 'en' ? 'vi' : 'en';
- applyLanguage(currentLang);
- document.getElementById('langToggle').innerHTML = currentLang === 'en' ? 'VI' : 'EN';
-}
+toggleBtn.addEventListener('click',()=>{
+currentLang = currentLang === 'en' ? 'vi' : 'en';
+applyLanguage(currentLang);
+toggleBtn.innerHTML = currentLang === 'en' ? 'VI' : 'EN';
+});
 </script>
-```
 
----
-
-## Ví dụ hoàn chỉnh
-
-```html
-<p
- data-en="Track Record"
- data-vi="Thành Tựu & Hiệu Suất">
- Track Record
-</p>
-```
-
-```html
-<div
- data-en="Accuracy Rate"
- data-vi="Tỷ Lệ Chính Xác">
- Accuracy Rate
-</div>
-```
-
----
-
-## Gợi ý triển khai chuẩn nhất
-
-Với portfolio lớn như file hiện tại của bạn:
-
-* Không nên hardcode text trong JS
-* Nên dùng `data-en` + `data-vi`
-* Dễ maintain
-* SEO ổn hơn
-* Sau này thêm ngôn ngữ thứ 3 rất dễ
-* Không phá layout hiện tại
-
-Cấu trúc bạn đang dùng rất tốt cho portfolio AI/Data Quality.
-Chỉ cần thêm layer song ngữ bằng dataset là đúng hướng chuyên nghiệp nhất.
+</body>
+</html>
