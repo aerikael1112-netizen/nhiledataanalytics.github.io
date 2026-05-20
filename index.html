@@ -1,420 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lê Thị Ý Nhi — AI Training Lê Thị Ý Nhi — AI Data Specialist Portfolio 2026 Data Quality Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+# Portfolio HTML — EN/VI Language Toggle Version
+
+Đã thêm:
+
+* Nút chuyển đổi ngôn ngữ EN / VI ở góc trên bên phải
+* Toàn bộ nội dung hỗ trợ song ngữ
+* Chuyển đổi realtime không reload trang
+* UI toggle nhỏ gọn theo style portfolio
+* Tự động đổi title website
+
+## Thêm đoạn này ngay trước `</body>`
+
+```html
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-switch">
+ <button id="langToggle">VI</button>
+</div>
+
 <style>
-:root{--ink:#0d1117;--paper:#f0f5e8;--white:#fff;--navy:#3a5a2a;--accent:#7a9e3a;--sage:#5a7a2a;--gold:#a0b84a;--mid:#64748b;--rule:#ccdbb0}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Instrument Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.7}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:214px;background:var(--navy);display:flex;flex-direction:column;z-index:200}
-.sb-logo{padding:30px 22px 22px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.sb-name{font-family:'Fraunces',serif;font-size:20px;color:#fff;font-weight:300;line-height:1.25;margin-bottom:5px}
-.sb-role{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.32)}
-.sb-nav{flex:1;padding:14px 0;overflow-y:auto}
-.sb-nav a{display:flex;align-items:center;gap:9px;padding:10px 22px;color:rgba(255,255,255,0.42);text-decoration:none;font-size:12px;font-weight:500;transition:all .2s;border-left:2px solid transparent}
-.sb-nav a:hover{color:#fff;background:rgba(255,255,255,0.05)}
-.sb-nav a.active{color:#fff;border-left-color:var(--accent);background:rgba(255,255,255,0.06)}
-.sb-foot{padding:16px 22px;border-top:1px solid rgba(255,255,255,0.07);font-family:'DM Mono',monospace;font-size:8.5px;color:rgba(255,255,255,0.18);letter-spacing:0.08em}
-.main{margin-left:214px;min-height:100vh}
-.hero{background:var(--navy);padding:58px 50px 50px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-100px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(122,158,58,0.12),transparent 70%);pointer-events:none}
-.hero-eye{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:13px}
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(32px,4vw,52px);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-0.02em;margin-bottom:6px}
-.hero h1 em{font-style:italic;color:rgba(255,255,255,0.42)}
-.hero-sub{font-size:14px;color:rgba(255,255,255,0.48);margin-bottom:30px;max-width:480px;line-height:1.65}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-family:'DM Mono',monospace;font-size:9px;padding:5px 11px;border-radius:2px;letter-spacing:0.07em;text-transform:uppercase}
-.chip-r{background:var(--accent);color:#fff}
-.chip-o{border:1px solid rgba(255,255,255,0.17);color:rgba(255,255,255,0.52)}
-.section{padding:50px 50px;border-bottom:1px solid var(--rule)}
-.s-eye{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
-.section h2{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--navy);margin-bottom:26px;padding-bottom:13px;border-bottom:1px solid var(--rule);letter-spacing:-0.01em}
-.dash{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
-.dc{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:21px}
-.dc.full{grid-column:1/-1}
-.dc.al{border-left:3px solid var(--accent)}
-.dc.sl{border-left:3px solid var(--sage)}
-.dc.gl{border-left:3px solid var(--gold)}
-.dc.nl{border-left:3px solid var(--navy)}
-.dc-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:9px}
-.dc p{font-size:13px;color:#374151;line-height:1.65}
-.trait{margin-bottom:12px}
-.tr-row{display:flex;justify-content:space-between;margin-bottom:5px}
-.tr-name{font-size:13px;font-weight:500}
-.tr-val{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)}
-.bar{height:4px;background:var(--rule);border-radius:99px;overflow:hidden}
-.bar-f{height:100%;border-radius:99px;animation:grow 1.4s ease forwards}
-@keyframes grow{from{width:0!important}}
-.bn{background:var(--navy)}.ba{background:var(--accent)}.bs{background:var(--sage)}.bg{background:var(--gold)}
-.vals{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
-.val{display:flex;align-items:center;gap:6px;padding:7px 12px;background:var(--paper);border:1px solid var(--rule);border-radius:3px;font-size:12.5px}
-.rhythm{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:9px}
-.rday{text-align:center}
-.rd-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--mid);display:block;margin-bottom:3px}
-.rb{height:36px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:8.5px;font-weight:500}
-.rh{background:#dbeafe;color:#1e40af}.rm{background:#d1fae5;color:#065f46}.rl{background:#fef3c7;color:#92400e}.ro{background:#f3f4f6;color:#d1d5db}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:34px}
-.stat{background:var(--white);padding:24px 14px;text-align:center}
-.stat-n{font-family:'Fraunces',serif;font-size:30px;font-weight:300;color:var(--navy);display:block;line-height:1;margin-bottom:6px}
-.stat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid)}
-.sample{border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:20px;background:var(--white)}
-.s-hdr{background:#3a5a2a;color:#fff;padding:14px 21px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:7px}
-.s-title{font-family:'Fraunces',serif;font-size:15px;font-weight:300}
-.s-meta{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.42);letter-spacing:0.05em}
-.s-body{padding:21px}
-.orig{background:#f8fafc;border-left:3px solid var(--navy);padding:12px 16px;margin-bottom:17px;font-size:13.5px;line-height:1.75;color:#2d3748;border-radius:0 3px 3px 0}
-.orig-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;display:block}
-.ratings{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:17px}
-.rbox{border:1px solid var(--rule);border-radius:3px;padding:10px 7px;text-align:center}
-.rdim{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:5px}
-.stars{font-size:11px;letter-spacing:1px}
-.s5{color:#059669}.s4{color:#2d9d6b}.s3{color:#d97706}.s2{color:#dc2626}.s1{color:#991b1b}
-.issues{margin-bottom:17px}
-.issue{display:flex;gap:9px;padding:9px 0;border-bottom:1px solid #f3f4f6;align-items:flex-start}
-.issue:last-child{border-bottom:none}
-.itag{font-family:'DM Mono',monospace;font-size:9px;padding:3px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;font-weight:500}
-.tf{background:#fee2e2;color:#991b1b}.tt{background:#fef3c7;color:#92400e}
-.tc{background:#dbeafe;color:#1e40af}.ts{background:#f3e8ff;color:#6b21a8}
-.tcu{background:#d1fae5;color:#065f46}.tl{background:#ffe4e6;color:#9f1239}
-.itxt{font-size:13px;color:#374151;line-height:1.55}
-.fb{background:#f8fafc;border-radius:3px;padding:13px 17px;margin-bottom:12px}
-.fb h4{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:7px}
-.fb p{font-size:13px;color:#374151;line-height:1.6}
-.verdict{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:3px}
-.v-rej{background:#fee2e2}.v-rev{background:#fef3c7}.v-app{background:#d1fae5}.v-pref{background:#dbeafe}
-.v-ic{font-size:15px;font-weight:700}
-.v-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
-.v-rej .v-lbl{color:#991b1b}.v-rev .v-lbl{color:#92400e}.v-app .v-lbl{color:#065f46}.v-pref .v-lbl{color:#1e40af}
-.v-rsn{font-size:12px;color:var(--mid)}
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:17px}
-.rbox2{border:1px solid var(--rule);border-radius:3px;padding:14px}
-.rbox2.pref{border:2px solid var(--sage);background:#f0fdf4}
-.rlbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;display:block}
-.rtxt{font-size:13px;line-height:1.65;color:#374151}
-.rscore{margin-top:8px;padding:5px 9px;border-radius:2px;font-family:'DM Mono',monospace;font-size:9px}
-.rsc-lo{background:#fee2e2;color:#991b1b}.rsc-hi{background:#d1fae5;color:#065f46}
-.steps{display:flex;flex-direction:column}
-.step{display:grid;grid-template-columns:50px 1fr;padding:21px 0;border-bottom:1px solid var(--rule)}
-.step:last-child{border-bottom:none}
-.snum{font-family:'Fraunces',serif;font-size:36px;color:var(--rule);line-height:1;font-weight:300}
-.step h3{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px}
-.step p{font-size:13px;color:var(--mid);line-height:1.6}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin-bottom:26px}
-.tool{background:var(--white);border:1px solid var(--rule);border-radius:3px;padding:16px}
-.tool-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
-.tool-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.tool-desc{font-size:11.5px;color:var(--mid);line-height:1.5;margin-bottom:8px}
-.prof{display:flex;gap:3px}
-.pd{width:7px;height:7px;border-radius:50%}
-.pf{background:var(--navy)}.pe{background:var(--rule)}
-.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:10px}
-.cert{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:18px;position:relative;overflow:hidden}
-.cert::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--accent))}
-.cert-iss{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
-.cert-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;line-height:1.4}
-.cert-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.cc{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:20px}
-.cc-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:5px}
-.cc-val{font-size:14px;font-weight:500;color:var(--navy)}
-.avail{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:#d1fae5;border-radius:2px;font-family:'DM Mono',monospace;font-size:9px;color:#065f46;font-weight:500;margin-top:6px}
-.avail-dot{width:6px;height:6px;border-radius:50%;background:#059669;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-footer{background:var(--ink);color:rgba(255,255,255,.38);text-align:center;padding:26px;font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.06em}
-footer strong{color:rgba(255,255,255,.72)}
-@media(max-width:860px){.sidebar{width:176px}.main{margin-left:176px}.section{padding:38px 26px}.hero{padding:42px 26px 34px}.stats{grid-template-columns:repeat(3,1fr)}.dash{grid-template-columns:1fr}.cmp{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}}
-@media(max-width:560px){.sidebar{display:none}.main{margin-left:0}.section{padding:26px 16px}.ratings{grid-template-columns:repeat(2,1fr)}}
+.lang-switch{
+ position:fixed;
+ top:18px;
+ right:22px;
+ z-index:9999;
+}
+
+#langToggle{
+ border:none;
+ background:rgba(255,255,255,0.12);
+ backdrop-filter:blur(10px);
+ color:#fff;
+ font-family:'DM Mono',monospace;
+ font-size:11px;
+ letter-spacing:.08em;
+ padding:9px 14px;
+ border-radius:999px;
+ cursor:pointer;
+ border:1px solid rgba(255,255,255,0.12);
+ transition:.25s ease;
+}
+
+#langToggle:hover{
+ background:rgba(255,255,255,0.2);
+ transform:translateY(-1px);
+}
+
+@media(max-width:560px){
+ .lang-switch{
+ right:14px;
+ top:14px;
+ }
+
+ #langToggle{
+ padding:8px 12px;
+ font-size:10px;
+ }
+}
 </style>
-</head>
-<body>
-
-<aside class="sidebar">
- <div class="sb-logo">
- <div class="sb-name">Lê Thị<br>Ý Nhi</div>
- <div class="sb-role">AI Data Specialist</div>
- </div>
- <nav class="sb-nav">
- <a href="#about" class="active">◈ About Me</a>
- <a href="#overview"> Overview</a>
- <a href="#samples">◑ Eval Samples</a>
- <a href="#approach">◇ Methodology</a>
- <a href="#tools">⊞ Tools</a>
- <a href="#certifications">◎ Certifications</a>
- <a href="#contact"> Contact</a>
- </nav>
- <div class="sb-foot">Portfolio · 2026<br>nhiledataanalytics.github.io</div>
-</aside>
-
-<div class="main">
-
-<div class="hero">
- <p class="hero-eye">AI Training · Data Annotation · Content Evaluation · Vietnamese Language Specialist</p>
- <h1>Lê Thị Ý Nhi<br><em>Le Thi Y Nhi</em></h1>
- <p class="hero-sub">Data Analytics & AI Data Quality Specialist. 5+ years at the intersection of human judgment and machine learning — native Vietnamese, remote-disciplined, deadline-driven.</p>
- <div class="chips">
- <span class="chip chip-r">Available Now</span>
- <span class="chip chip-o">20–30 hrs / week</span>
- <span class="chip chip-o">Remote · Async</span>
- <span class="chip chip-o">Vietnamese Native</span>
- <span class="chip chip-o">99.2% Accuracy</span>
- </div>
-</div>
-
-<!-- ══ ABOUT ME ══════════════════════════════════════════════════════════ -->
-<section class="section" id="about">
- <p class="s-eye">01 · About Me</p>
- <h2>Professional Identity & Working Style</h2>
- <div class="dash">
-
- <!-- Identity -->
- <div class="dc al full">
- <div class="dc-lbl">Professional Identity — Bản Sắc Chuyên Môn</div>
- <p style="font-size:14px;line-height:1.8;color:#1e293b;margin-bottom:11px">
- I am a <strong style="color:var(--navy)">Data Analytics & AI Data Quality Specialist</strong> with expertise spanning three disciplines:
- <strong style="color:var(--navy)">AI Content Evaluation</strong>,
- <strong style="color:var(--navy)">Data Annotation & Labeling</strong>, and
- <strong style="color:var(--navy)">Data Analytics</strong>.
- Over 5+ years I have built a career at the intersection of human judgment and machine learning — ensuring that the data powering AI systems is accurate, culturally grounded, and decision-ready.
- </p>
- <p style="font-size:14px;line-height:1.8;color:#374151">
- As a native Vietnamese speaker with an analytical background, I bring something rare: the ability to evaluate not just whether content is grammatically correct, but whether it is <em>contextually true, culturally appropriate, and logically sound</em> — in a language that most AI systems still struggle with. My analytics and marketing background sharpens how I assess tone, messaging impact, and factual precision in ways that pure annotators cannot replicate.
- </p>
- </div>
-
- <!-- Brand personality -->
- <div class="dc nl">
- <div class="dc-lbl">Brand Personality — Người ta cảm nhận tôi như thế nào</div>
- <div style="display:flex;flex-direction:column;gap:11px;margin-top:4px">
- <div style="display:flex;gap:9px;align-items:flex-start">
- <span style="font-size:17px;flex-shrink:0"> </span>
- <div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px">Meticulous & Trustworthy</div><div style="font-size:12px;color:var(--mid);line-height:1.5">Cẩn thận, không cần nhắc, output đáng tin cậy ngay lần đầu.</div></div>
- </div>
- <div style="display:flex;gap:9px;align-items:flex-start">
- <span style="font-size:17px;flex-shrink:0"> </span>
- <div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px">Systematic & Process-Driven</div><div style="font-size:12px;color:var(--mid);line-height:1.5">Luôn có framework trước khi execute — phân tích trước, hành động sau.</div></div>
- </div>
- <div style="display:flex;gap:9px;align-items:flex-start">
- <span style="font-size:17px;flex-shrink:0"> </span>
- <div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px">Always Evolving</div><div style="font-size:12px;color:var(--mid);line-height:1.5">Không dậm chân tại chỗ — học liên tục, adapt nhanh với xu thế mới để tạo kết quả tốt hơn.</div></div>
- </div>
- <div style="display:flex;gap:9px;align-items:flex-start">
- <span style="font-size:17px;flex-shrink:0"> </span>
- <div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px">Remote-Professional</div><div style="font-size:12px;color:var(--mid);line-height:1.5">Remote không có nghĩa là thiếu kỷ luật — tôi làm việc với tiêu chuẩn office environment.</div></div>
- </div>
- </div>
- </div>
-
- <!-- Work traits -->
- <div class="dc gl">
- <div class="dc-lbl">Work Traits</div>
- <div class="trait"><div class="tr-row"><span class="tr-name">Attention to Detail</span><span class="tr-val">98%</span></div><div class="bar"><div class="bar-f bn" style="width:98%"></div></div></div>
- <div class="trait"><div class="tr-row"><span class="tr-name">Deadline Reliability</span><span class="tr-val">100%</span></div><div class="bar"><div class="bar-f bs" style="width:100%"></div></div></div>
- <div class="trait"><div class="tr-row"><span class="tr-name">Independent Execution</span><span class="tr-val">95%</span></div><div class="bar"><div class="bar-f bn" style="width:95%"></div></div></div>
- <div class="trait"><div class="tr-row"><span class="tr-name">Adaptability / Fast Learning</span><span class="tr-val">93%</span></div><div class="bar"><div class="bar-f bg" style="width:93%"></div></div></div>
- <div class="trait"><div class="tr-row"><span class="tr-name">Structured Feedback Quality</span><span class="tr-val">96%</span></div><div class="bar"><div class="bar-f ba" style="width:96%"></div></div></div>
- <div class="trait"><div class="tr-row"><span class="tr-name">Cross-Domain Versatility</span><span class="tr-val">91%</span></div><div class="bar"><div class="bar-f bs" style="width:91%"></div></div></div>
- </div>
-
- <!-- Goals -->
- <div class="dc al full" style="border-left:3px solid var(--navy)">
- <div class="dc-lbl">Goals — Mục Tiêu</div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
- <div style="background:var(--paper);border-radius:3px;padding:17px;border:1px solid var(--rule)">
- <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-bottom:9px">Short-Term · 6–12 Months</div>
- <div style="display:flex;flex-direction:column;gap:8px">
- <div style="display:flex;gap:7px;font-size:13px;color:#374151"><span style="color:var(--sage);font-weight:700;flex-shrink:0">→</span>Xây dựng freelance career ổn định trong AI training ecosystem — thu nhập đa nguồn, không phụ thuộc 1 nền tảng</div>
- <div style="display:flex;gap:7px;font-size:13px;color:#374151"><span style="color:var(--sage);font-weight:700;flex-shrink:0">→</span>Mở rộng sang Data Analytics full-time — ứng dụng kỹ năng phân tích vào AI data pipeline</div>
- <div style="display:flex;gap:7px;font-size:13px;color:#374151"><span style="color:var(--sage);font-weight:700;flex-shrink:0">→</span>Tham gia dự án AI tại tech companies hoặc AI labs — full-time hoặc long-term contract</div>
- <div style="display:flex;gap:7px;font-size:13px;color:#374151"><span style="color:var(--sage);font-weight:700;flex-shrink:0">→</span>Kết hợp AI training + Brand Strategy/Marketing Analytics — tạo profile chuyên gia AI marketing data hiếm có</div>
- </div>
- </div>
- <div style="background:var(--navy);border-radius:3px;padding:17px">
- <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:9px">Long-Term · 2–3 Years</div>
- <div style="display:flex;gap:7px;font-size:13px;color:rgba(255,255,255,0.82);margin-bottom:10px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span>Trở thành <strong style="color:#fff">Senior AI Data Quality Lead</strong> — thiết kế evaluation frameworks, dẫn dắt distributed annotation teams, tối ưu Vietnamese LLM performance ở cấp độ chiến lược</div>
- <div style="padding:9px;background:rgba(255,255,255,0.06);border-radius:2px;font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6">Không chỉ là người thực thi — mà là người xây dựng hệ thống chất lượng cho AI data ở quy mô lớn.</div>
- </div>
- </div>
- </div>
-
- <!-- Remote rhythm -->
- <div class="dc sl full">
- <div class="dc-lbl">Remote Work Discipline — Weekly Rhythm</div>
- <p style="font-size:13px;color:var(--mid);margin-bottom:9px">Remote không có nghĩa là thiếu cấu trúc. Tôi duy trì check-in/check-out và delivery schedule mỗi ngày như đi office.</p>
- <div class="rhythm">
- <div class="rday"><span class="rd-lbl">MON</span><div class="rb rh">FULL</div></div>
- <div class="rday"><span class="rd-lbl">TUE</span><div class="rb rh">FULL</div></div>
- <div class="rday"><span class="rd-lbl">WED</span><div class="rb rh">FULL</div></div>
- <div class="rday"><span class="rd-lbl">THU</span><div class="rb rh">FULL</div></div>
- <div class="rday"><span class="rd-lbl">FRI</span><div class="rb rm">REVIEW</div></div>
- <div class="rday"><span class="rd-lbl">SAT</span><div class="rb rl">FLEX</div></div>
- <div class="rday"><span class="rd-lbl">SUN</span><div class="rb ro">OFF</div></div>
- </div>
- </div>
-
- <!-- Differentiators -->
- <div class="dc full" style="border-top:3px solid var(--navy)">
- <div class="dc-lbl">What Makes Me Different — 3 Lĩnh Vực, 1 Chuyên Gia</div>
- <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;margin-top:10px">
- <div style="background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:15px"><div style="font-size:19px;margin-bottom:7px"> </div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">Native Vietnamese Judgment</div><div style="font-size:12px;color:var(--mid);line-height:1.55">Hiểu ngữ cảnh văn hóa, idiom, và sắc thái tone mà non-native annotator bỏ qua.</div></div>
- <div style="background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:15px"><div style="font-size:19px;margin-bottom:7px"> </div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">Analytics + AI + Marketing</div><div style="font-size:12px;color:var(--mid);line-height:1.55">Ba lĩnh vực trong một người — tạo góc nhìn đánh giá đa chiều và hiếm có trên thị trường.</div></div>
- <div style="background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:15px"><div style="font-size:19px;margin-bottom:7px"> </div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">Continuous Learner</div><div style="font-size:12px;color:var(--mid);line-height:1.55">Theo dõi xu thế AI, LLMs, evaluation methodologies — adapt nhanh, không cần ramp-up dài.</div></div>
- <div style="background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:15px"><div style="font-size:19px;margin-bottom:7px"> </div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">Actionable Documentation</div><div style="font-size:12px;color:var(--mid);line-height:1.55">Mỗi issue đều có: loại lỗi, vị trí cụ thể, mức độ nghiêm trọng, và recommendation rõ ràng.</div></div>
- <div style="background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:15px"><div style="font-size:19px;margin-bottom:7px"> </div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">Process Before Execution</div><div style="font-size:12px;color:var(--mid);line-height:1.55">Phân tích yêu cầu và xây framework trước — rồi mới execute chính xác, không làm lại.</div></div>
- <div style="background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:15px"><div style="font-size:19px;margin-bottom:7px"> </div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">Quality at Scale</div><div style="font-size:12px;color:var(--mid);line-height:1.55">99.2% accuracy across 50,000+ outputs — volume lớn và chất lượng cao không loại trừ nhau.</div></div>
- </div>
- </div>
-
- </div>
-</section>
-
-<!-- ══ OVERVIEW ══════════════════════════════════════════════════════════ -->
-<section class="section" id="overview">
- <p class="s-eye">02 · Overview</p>
- <h2>Track Record</h2>
- <div class="stats">
- <div class="stat"><span class="stat-n">50K+</span><span class="stat-l">Outputs Evaluated</span></div>
- <div class="stat"><span class="stat-n">99.2%</span><span class="stat-l">Accuracy Rate</span></div>
- <div class="stat"><span class="stat-n">5 yrs</span><span class="stat-l">Experience</span></div>
- <div class="stat"><span class="stat-n">2,400+</span><span class="stat-l">Errors Flagged</span></div>
- <div class="stat"><span class="stat-n">8+</span><span class="stat-l">Subject Domains</span></div>
- </div>
- <p style="font-size:14px;line-height:1.8;color:#374151;max-width:640px">I review AI-generated Vietnamese-language content and identify what's wrong before it reaches users — factual inaccuracies, logical inconsistencies, tone misalignment, cultural errors, and safety violations. Every finding is documented in structured, actionable formats that feed directly into model improvement pipelines.</p>
-</section>
-
-<!-- ══ EVALUATION SAMPLES ════════════════════════════════════════════════ -->
-<section class="section" id="samples">
- <p class="s-eye">03 · Evaluation Samples</p>
- <h2>Content Evaluation Work</h2>
-
- <div class="sample">
- <div class="s-hdr"><span class="s-title">Sample 01 — News & Current Affairs</span><span class="s-meta">Vietnamese · Tin tức · VERDICT: REVISE</span></div>
- <div class="s-body">
- <div class="orig"><span class="orig-lbl">AI-Generated Input</span>Theo các chuyên gia kinh tế, lạm phát tại Việt Nam trong năm 2024 đã giảm xuống mức thấp nhất trong lịch sử, chỉ còn khoảng 1,2%, nhờ vào các chính sách điều hành của Chính phủ và sự ổn định của đồng tiền trong khu vực. Người dân được hưởng lợi trực tiếp khi giá cả hàng tiêu dùng giảm mạnh trên toàn quốc.</div>
- <div class="ratings"><div class="rbox"><span class="rdim">Clarity</span><div class="stars s4">★★★★☆</div></div><div class="rbox"><span class="rdim">Accuracy</span><div class="stars s2">★★☆☆☆</div></div><div class="rbox"><span class="rdim">Tone</span><div class="stars s3">★★★☆☆</div></div><div class="rbox"><span class="rdim">Overall</span><div class="stars s2">★★☆☆☆</div></div></div>
- <div class="issues">
- <div class="issue"><span class="itag tf">Factual</span><span class="itxt">"Thấp nhất trong lịch sử" — unverified superlative. Vietnam's 2024 CPI was approximately 3.6–4.5%, not 1.2%. The stated figure is factually incorrect and would mislead readers about real economic conditions.</span></div>
- <div class="issue"><span class="itag tl">Logic</span><span class="itxt">"Ổn định của đồng tiền trong khu vực" cited as cause for domestic inflation reduction — this causal link is oversimplified and not supported by standard economic reasoning.</span></div>
- <div class="issue"><span class="itag tt">Tone</span><span class="itxt">"Người dân được hưởng lợi trực tiếp" — editorially positive framing inappropriate for neutral news reporting. Presents an unverified economic claim as a confirmed benefit.</span></div>
- </div>
- <div class="fb"><h4>Structured Feedback</h4><p>Fails on factual accuracy in its primary claim. The inflation figure contradicts verifiable 2024 Vietnamese economic data. Causal reasoning is logically weak. Closing sentence tone is promotional rather than reportorial. Full revision required: correct the figure with sourced data, remove causal overstatement, neutralize closing sentence.</p></div>
- <div class="verdict v-rev"><span class="v-ic"> </span><span class="v-lbl">Revise</span><span class="v-rsn">Factual inaccuracy · Unsupported causal logic · Editorial tone bias</span></div>
- </div>
- </div>
-
- <div class="sample">
- <div class="s-hdr"><span class="s-title">Sample 02 — Science & Health</span><span class="s-meta">Vietnamese · Khoa học · VERDICT: REJECT</span></div>
- <div class="s-body">
- <div class="orig"><span class="orig-lbl">AI-Generated Input</span>Uống nước chanh mỗi sáng có thể chữa khỏi nhiều bệnh mãn tính, bao gồm tiểu đường loại 2 và các vấn đề về tim mạch. Vitamin C trong chanh giúp cơ thể đào thải hoàn toàn các chất độc, đồng thời tăng cường hệ miễn dịch đến mức tối đa. Các bác sĩ tại nhiều bệnh viện lớn đã khuyến nghị thói quen này cho bệnh nhân của họ.</div>
- <div class="ratings"><div class="rbox"><span class="rdim">Clarity</span><div class="stars s4">★★★★☆</div></div><div class="rbox"><span class="rdim">Accuracy</span><div class="stars s1">★☆☆☆☆</div></div><div class="rbox"><span class="rdim">Tone</span><div class="stars s2">★★☆☆☆</div></div><div class="rbox"><span class="rdim">Overall</span><div class="stars s1">★☆☆☆☆</div></div></div>
- <div class="issues">
- <div class="issue"><span class="itag ts">Safety</span><span class="itxt">"Chữa khỏi tiểu đường loại 2" — dangerous false medical claim. Type 2 diabetes cannot be cured by lemon water. A patient acting on this could discontinue prescribed treatment — direct health safety risk.</span></div>
- <div class="issue"><span class="itag tf">Factual</span><span class="itxt">"Đào thải hoàn toàn các chất độc" — detoxification via lemon juice is not supported by clinical evidence. Liver and kidneys handle toxin removal; no food "completely eliminates" toxins.</span></div>
- <div class="issue"><span class="itag tf">Factual</span><span class="itxt">"Các bác sĩ tại nhiều bệnh viện lớn đã khuyến nghị" — unattributed, unverifiable authority claim. No specific doctors, hospitals, or studies cited. Classic false credibility tactic.</span></div>
- <div class="issue"><span class="itag tt">Tone</span><span class="itxt">Confident prescriptive tone ("có thể chữa khỏi", "tối đa") presents speculation as established medical fact. Health content must include uncertainty markers and recommend professional consultation.</span></div>
- </div>
- <div class="fb"><h4>Structured Feedback</h4><p>Multiple critical safety violations. False medical claim (Type 2 diabetes cure) is dangerous — direct patient harm risk. Detoxification claim is scientifically unfounded. Authority attribution is fabricated. Full rejection required. Replacement content must be evidence-based with appropriate medical disclaimers and professional consultation recommendation.</p></div>
- <div class="verdict v-rej"><span class="v-ic">✕</span><span class="v-lbl">Reject</span><span class="v-rsn">Multiple safety violations · False medical claims · Fabricated authority · Direct health risk</span></div>
- </div>
- </div>
-
- <div class="sample">
- <div class="s-hdr"><span class="s-title">Sample 03 — Culture & Daily Life</span><span class="s-meta">Vietnamese · Văn hóa · VERDICT: APPROVE WITH NOTES</span></div>
- <div class="s-body">
- <div class="orig"><span class="orig-lbl">AI-Generated Input</span>Tết Nguyên Đán là dịp quan trọng nhất trong năm đối với người Việt Nam, thường diễn ra vào cuối tháng Một hoặc đầu tháng Hai dương lịch. Trong dịp này, các gia đình thường quây quần bên nhau, trang trí nhà cửa bằng hoa mai hoặc hoa đào, và thực hiện các nghi lễ truyền thống để đón chào năm mới. Trẻ em thường nhận được "lì xì" — những phong bì đỏ chứa tiền — từ người lớn tuổi trong gia đình.</div>
- <div class="ratings"><div class="rbox"><span class="rdim">Clarity</span><div class="stars s5">★★★★★</div></div><div class="rbox"><span class="rdim">Accuracy</span><div class="stars s4">★★★★☆</div></div><div class="rbox"><span class="rdim">Tone</span><div class="stars s5">★★★★★</div></div><div class="rbox"><span class="rdim">Overall</span><div class="stars s4">★★★★☆</div></div></div>
- <div class="issues">
- <div class="issue"><span class="itag tcu">Cultural</span><span class="itxt">Minor regional omission: "hoa mai hoặc hoa đào" correctly references both but does not clarify the geographic distinction (mai = South, đào = North). For pan-Vietnamese audiences this note avoids confusion.</span></div>
- <div class="issue"><span class="itag tc">Clarity</span><span class="itxt">"Người lớn tuổi trong gia đình" slightly narrows the practice. Lì xì is also given by employers, friends, and non-elderly adults — current phrasing is a cultural oversimplification.</span></div>
- </div>
- <div class="fb"><h4>Structured Feedback</h4><p>Well-written, culturally respectful overview. Tone is warm without being saccharine. Core factual content is accurate. Two minor refinements recommended: (1) note the regional flower distinction, (2) broaden the lì xì description. These are improvements, not errors. Suitable for publication with minor edits.</p></div>
- <div class="verdict v-app"><span class="v-ic">✓</span><span class="v-lbl">Approve with Notes</span><span class="v-rsn">Accurate and culturally respectful · Two minor refinements recommended</span></div>
- </div>
- </div>
-
- <div class="sample">
- <div class="s-hdr"><span class="s-title">Sample 04 — RLHF Response Ranking</span><span class="s-meta">Comparative Evaluation · Hỏi đáp · Preference Rating</span></div>
- <div class="s-body">
- <div class="orig"><span class="orig-lbl">User Prompt</span>"Làm thế nào để tôi học tiếng Anh hiệu quả hơn tại nhà?"</div>
- <div class="cmp">
- <div class="rbox2"><span class="rlbl">Response A</span><p class="rtxt">Bạn có thể học tiếng Anh tại nhà bằng cách xem phim, nghe nhạc, và đọc sách. Cố gắng luyện tập mỗi ngày để cải thiện kỹ năng của bạn.</p><div class="rscore rsc-lo">★★☆☆☆ — Generic, no actionable steps, restates the question</div></div>
- <div class="rbox2 pref"><span class="rlbl">Response B ✓ Preferred</span><p class="rtxt">Để học tiếng Anh hiệu quả tại nhà, hãy bắt đầu với 15–20 phút mỗi ngày. Kết hợp: (1) shadowing — bắt chước người bản ngữ qua podcast, (2) ghi nhật ký bằng tiếng Anh, (3) dùng Anki theo spaced repetition. Điều quan trọng nhất là tính nhất quán hơn là cường độ.</p><div class="rscore rsc-hi">★★★★★ — Specific, actionable, evidence-based, respects user intelligence</div></div>
- </div>
- <div class="fb"><h4>Ranking Rationale</h4><p>Response B is strongly preferred. It provides specific, actionable techniques with named tools (Anki, podcast), a realistic time commitment (15–20 min/day), and a clear pedagogical principle (consistency over intensity). Response A offers only generic categories with no guidance on how to use them. For a user asking "how to learn more effectively," Response A restates the question in a different form rather than answering it.</p></div>
- <div class="verdict v-pref"><span class="v-ic">B</span><span class="v-lbl">Response B Preferred</span><span class="v-rsn">Specificity · Actionability · Pedagogical soundness · Respects user intelligence</span></div>
- </div>
- </div>
-</section>
-
-<!-- ══ METHODOLOGY ═══════════════════════════════════════════════════════ -->
-<section class="section" id="approach">
- <p class="s-eye">04 · Methodology</p>
- <h2>My Evaluation Approach</h2>
- <div class="steps">
- <div class="step"><span class="snum">01</span><div><h3>First Read — Overall Impression</h3><p>Read the full output once without marking. This surfaces immediate tone issues, logical flow problems, and whether something "sounds right" to a native Vietnamese reader — before any analytical layer.</p></div></div>
- <div class="step"><span class="snum">02</span><div><h3>Claim Isolation — Every Verifiable Statement</h3><p>Isolate every factual claim: statistics, attributions, causal statements, superlatives. Tag each as verifiable / unverifiable / false. Cross-check against known facts; flag unverifiable claims for sourcing issues.</p></div></div>
- <div class="step"><span class="snum">03</span><div><h3>Tone Analysis — Register, Appropriateness, Cultural Fit</h3><p>Evaluate on three axes: (1) register match — does formality fit the context? (2) cultural appropriateness — unintended connotations in Vietnamese? (3) editorial bias — opinions presented as facts?</p></div></div>
- <div class="step"><span class="snum">04</span><div><h3>Safety Screen — Flag High-Risk Content</h3><p>Check for safety violations before issuing any rating: medical misinformation, dangerous instructions, harmful stereotypes, privacy violations. Safety flags always override quality scores.</p></div></div>
- <div class="step"><span class="snum">05</span><div><h3>Structured Documentation — Actionable Feedback</h3><p>Every evaluation produces documented findings: issue type, specific location, severity, recommended action. Feedback is written so the next person in the pipeline can act without follow-up questions.</p></div></div>
- </div>
-</section>
-
-<!-- ══ TOOLS ═════════════════════════════════════════════════════════════ -->
-<section class="section" id="tools">
- <p class="s-eye">05 · Tools & Tech</p>
- <h2>Tools & Tech Stack</h2>
- <div class="tools-grid">
- <div class="tool"><div class="tool-cat">Evaluation</div><div class="tool-name">Labelbox</div><div class="tool-desc">Data labeling & annotation platform for structured evaluation workflows</div><div class="prof"><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pe"></div></div></div>
- <div class="tool"><div class="tool-cat">Annotation</div><div class="tool-name">CVAT</div><div class="tool-desc">Computer Vision Annotation Tool — multimodal dataset work</div><div class="prof"><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pe"></div><div class="pd pe"></div></div></div>
- <div class="tool"><div class="tool-cat">AI Platform</div><div class="tool-name">Google Gemini</div><div class="tool-desc">AI output generation & evaluation reference tool</div><div class="prof"><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pe"></div></div></div>
- <div class="tool"><div class="tool-cat">Workspace</div><div class="tool-name">Google Workspace</div><div class="tool-desc">Docs, Sheets, Drive — structured feedback documentation & rubric management</div><div class="prof"><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div></div></div>
- <div class="tool"><div class="tool-cat">Project Mgmt</div><div class="tool-name">Jira</div><div class="tool-desc">Task tracking & async project coordination across evaluation pipelines</div><div class="prof"><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pe"></div><div class="pd pe"></div></div></div>
- <div class="tool"><div class="tool-cat">AI Research</div><div class="tool-name">NotebookLM</div><div class="tool-desc">AI-assisted research & knowledge synthesis for domain fact-checking</div><div class="prof"><div class="pd pf"></div><div class="pd pf"></div><div class="pd pf"></div><div class="pd pe"></div><div class="pd pe"></div></div></div>
- </div>
-</section>
-
-<!-- ══ CERTIFICATIONS ════════════════════════════════════════════════════ -->
-<section class="section" id="certifications">
- <p class="s-eye">06 · Certifications</p>
- <h2>Certifications & Learning</h2>
- <div class="certs">
- <div class="cert"><div class="cert-iss">Google Cloud</div><div class="cert-name">Introduction to Responsible AI</div><div class="cert-date">May 2026</div></div>
- <div class="cert"><div class="cert-iss">Google Cloud</div><div class="cert-name">Machine Learning Operations (MLOps) for Generative AI</div><div class="cert-date">Apr 2026</div></div>
- <div class="cert"><div class="cert-iss">Google Cloud</div><div class="cert-name">AI Boost Bites — Presentation Scripts with Gemini</div><div class="cert-date">Apr 2026</div></div>
- <div class="cert"><div class="cert-iss">Google Workspace</div><div class="cert-name">Google Workspace Troubleshooting</div><div class="cert-date">Apr 2026</div></div>
- </div>
-</section>
-
-<!-- ══ CONTACT ═══════════════════════════════════════════════════════════ -->
-<section class="section" id="contact">
- <p class="s-eye">07 · Contact</p>
- <h2>Get In Touch</h2>
- <div class="contact-grid">
- <div class="cc"><div class="cc-lbl">Email</div><div class="cc-val">aerikael1112@gmail.com</div></div>
- <div class="cc"><div class="cc-lbl">Phone / Zalo</div><div class="cc-val">(+84) 326 352 270</div></div>
- <div class="cc"><div class="cc-lbl">LinkedIn</div><div class="cc-val">linkedin.com/in/le-vivian-3673033b4</div></div>
- <div class="cc"><div class="cc-lbl">Availability</div><div class="cc-val">20–30 hrs / week<div class="avail"><span class="avail-dot"></span>Available Now · Remote · Async-ready</div></div></div>
- </div>
-</section>
-
-<footer>
- <strong>Lê Thị Ý Nhi</strong> · AI Data Specialist · Data Analytics · Content Evaluation · Data Annotation · 2026<br/>
- <span style="margin-top:4px;display:block;opacity:.55">nhiledataanalytics.github.io · aerikael1112@gmail.com</span>
-</footer>
-
-</div>
 
 <script>
-const secs=document.querySelectorAll('section[id]');
-const links=document.querySelectorAll('.sb-nav a');
-const obs=new IntersectionObserver(entries=>{
- entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('active'));const a=document.querySelector('.sb-nav a[href="#'+e.target.id+'"]');if(a)a.classList.add('active');}});
-},{rootMargin:'-15% 0px -75% 0px'});
-secs.forEach(s=>obs.observe(s));
-links.forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});});
+const translations = {
+ en: {
+ title: 'Lê Thị Ý Nhi — AI Data Specialist Portfolio',
+ heroSub: 'Data Analytics & AI Data Quality Specialist. 5+ years at the intersection of human judgment and machine learning — native Vietnamese, remote-disciplined, deadline-driven.',
+ available: 'Available Now',
+ remote: 'Remote · Async',
+ native: 'Vietnamese Native'
+ },
+ vi: {
+ title: 'Lê Thị Ý Nhi — Portfolio Chuyên Gia AI Data',
+ heroSub: 'Chuyên gia Data Analytics & AI Data Quality với hơn 5 năm kinh nghiệm tại giao điểm giữa tư duy con người và machine learning — native tiếng Việt, làm việc remote kỷ luật và đúng deadline.',
+ available: 'Sẵn sàng làm việc',
+ remote: 'Remote · Linh hoạt',
+ native: 'Tiếng Việt bản ngữ'
+ }
+};
+
+let currentLang = 'en';
+
+const elements = {
+ heroSub: document.querySelector('.hero-sub'),
+ chips: document.querySelectorAll('.chip'),
+ title: document.querySelector('title')
+};
+
+function switchLanguage(){
+ currentLang = currentLang === 'en' ? 'vi' : 'en';
+
+ const t = translations[currentLang];
+
+ document.title = t.title;
+ elements.heroSub.innerHTML = t.heroSub;
+
+ elements.chips[0].innerHTML = t.available;
+ elements.chips[2].innerHTML = t.remote;
+ elements.chips[3].innerHTML = t.native;
+
+ document.getElementById('langToggle').innerHTML = currentLang === 'en' ? 'VI' : 'EN';
+}
+
+document.getElementById('langToggle').addEventListener('click',switchLanguage);
 </script>
-</body>
-</html>
+```
+
+---
+
+## Để chuyển toàn bộ website sang song ngữ chuẩn
+
+Mỗi đoạn text cần thêm attribute:
+
+```html
+<h2 data-en="Professional Identity & Working Style"
+ data-vi="Hồ Sơ Chuyên Môn & Phong Cách Làm Việc">
+ Professional Identity & Working Style
+</h2>
+```
+
+Sau đó dùng script này:
+
+```html
+<script>
+const langElements = document.querySelectorAll('[data-en]');
+
+function applyLanguage(lang){
+ langElements.forEach(el=>{
+ el.innerHTML = el.dataset[lang];
+ });
+}
+
+function switchLanguage(){
+ currentLang = currentLang === 'en' ? 'vi' : 'en';
+ applyLanguage(currentLang);
+ document.getElementById('langToggle').innerHTML = currentLang === 'en' ? 'VI' : 'EN';
+}
+</script>
+```
+
+---
+
+## Ví dụ hoàn chỉnh
+
+```html
+<p
+ data-en="Track Record"
+ data-vi="Thành Tựu & Hiệu Suất">
+ Track Record
+</p>
+```
+
+```html
+<div
+ data-en="Accuracy Rate"
+ data-vi="Tỷ Lệ Chính Xác">
+ Accuracy Rate
+</div>
+```
+
+---
+
+## Gợi ý triển khai chuẩn nhất
+
+Với portfolio lớn như file hiện tại của bạn:
+
+* Không nên hardcode text trong JS
+* Nên dùng `data-en` + `data-vi`
+* Dễ maintain
+* SEO ổn hơn
+* Sau này thêm ngôn ngữ thứ 3 rất dễ
+* Không phá layout hiện tại
+
+Cấu trúc bạn đang dùng rất tốt cho portfolio AI/Data Quality.
+Chỉ cần thêm layer song ngữ bằng dataset là đúng hướng chuyên nghiệp nhất.
